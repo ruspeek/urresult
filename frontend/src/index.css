@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Основные цвета */
-  --gold-primary: #FFD700;
-  --gold-light: #FFE55C;
-  --gold-dark: #B8860B;
-
-  --red-primary: #DC143C;
-  --red-light: #FF1744;
-  --red-dark: #A10E2B;
-
-  /* Синий - дополнительный */
-  --blue-dark: #0a0e1a;
-  --blue-medium: #1a1f3a;
-  --blue-light: #2d3561;
-
-  /* Текст */
-  --text-primary: #ffffff;
-  --text-secondary: #b0b0b0;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -29,122 +9,17 @@
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--blue-dark);
-  color: var(--text-primary);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-/* Глобальные стили */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--gold-primary);
-  font-weight: 700;
-}
-
-a {
-  color: var(--gold-primary);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--red-primary);
-}
-
-/* Кнопки */
-.btn-gold {
-  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
-  color: var(--blue-dark);
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-gold:hover {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-}
-
-.btn-red {
-  background: linear-gradient(135deg, var(--red-primary) 0%, var(--red-dark) 100%);
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-red:hover {
-  background: linear-gradient(135deg, var(--red-light) 0%, var(--red-primary) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.4);
-}
-
-/* Карточки */
-.card {
-  background: var(--blue-medium);
-  border: 1px solid var(--blue-light);
-  border-radius: 12px;
-  padding: 24px;
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  border-color: var(--gold-primary);
-  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.15);
-}
-
-/* Градиенты */
-.gradient-gold-red {
-  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--red-primary) 100%);
-}
-
-.gradient-blue-dark {
-  background: linear-gradient(180deg, var(--blue-dark) 0%, var(--blue-medium) 100%);
-}
-
-/* Текстовые классы */
-.text-gold {
-  color: var(--gold-primary);
-}
-
-.text-red {
-  color: var(--red-primary);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--red-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Разделители */
-.divider-gold {
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--gold-primary) 50%, transparent 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0a0e1a 0%, #1a0f1a 50%, #0a0e1a 100%);
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
 /* Анимации */
-@keyframes fadeIn {
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -152,24 +27,215 @@ a:hover {
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(220, 20, 60, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(220, 20, 60, 0.5);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Градиенты */
+.gradient-gold-red {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 30%, #DC143C 100%);
+}
+
+.gradient-red-gold {
+  background: linear-gradient(135deg, #DC143C 0%, #FF1744 50%, #FFD700 100%);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #DC143C, #FF1744);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Кнопки */
+.btn-gold {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #0a0e1a;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+}
+
+.btn-red {
+  background: linear-gradient(135deg, #DC143C, #FF1744);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(220, 20, 60, 0.4);
+}
+
+.btn-red:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(220, 20, 60, 0.6);
+}
+
+/* Карточки */
+.card {
+  background: rgba(26, 31, 58, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.4s ease;
+}
+
+.card:hover {
+  border-color: #FFD700;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+}
+
+/* Навигация */
+.nav-link {
+  color: #FFD700;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #DC143C;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #FFD700, #DC143C);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Разделители */
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FFD700, #DC143C, transparent);
+  margin: 40px 0;
+}
+
+/* Иконки */
+.icon-gold {
+  color: #FFD700;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+.icon-red {
+  color: #DC143C;
+  filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.5));
+}
+
+/* Секции */
+.section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero секция */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at top, rgba(255, 215, 0, 0.1), transparent 50%),
+              radial-gradient(ellipse at bottom, rgba(220, 20, 60, 0.1), transparent 50%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+  animation: float 20s ease-in-out infinite;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--blue-dark);
+  background: #0a0e1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gold-primary);
-  border-radius: 5px;
+  background: linear-gradient(180deg, #FFD700, #DC143C);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--red-primary);
+  background: linear-gradient(180deg, #FFA500, #FF1744);
 }
