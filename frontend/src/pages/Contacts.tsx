@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MessageCircle, Send, CheckCircle } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { Mail, Phone, MessageCircle, Clock, Send, CheckCircle } from 'lucide-react';
 
 const Contacts: React.FC = () => {
-  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
-    service: location.state?.package || ''
+    service: ''
   });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/contact`, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -31,149 +26,160 @@ const Contacts: React.FC = () => {
       }
     } catch (error) {
       console.error('Error:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
-    <div>
-      <section className="py-20 bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-primary">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-center mb-16">
-            <span className="text-gold">Свяжитесь с нами</span>
-          </h1>
+    <div className="min-h-screen pt-20">
+      <section className="section">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold mb-4 text-gradient-gold">Контакты</h1>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Свяжитесь с нами любым удобным способом
+          </p>
+        </div>
 
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-8">Начните с бесплатного разбора</h2>
+        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+          {/* Контактная информация */}
+          <div className="space-y-8">
+            <div className="card">
+              <h2 className="text-2xl font-bold text-yellow-500 mb-6">Контактная информация</h2>
 
-              <div className="space-y-6 mb-8">
-                <a href="https://t.me/resultlegal" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-dark-primary rounded-xl border border-gold/20 hover:border-gold transition-all">
-                  <div className="bg-gold/20 p-3 rounded-lg">
-                    <MessageCircle className="w-6 h-6 text-gold" />
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-yellow-500/10 p-3 rounded-xl">
+                    <MessageCircle className="w-6 h-6 text-yellow-500" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Telegram</p>
-                    <p className="text-white font-medium">@resultlegal</p>
+                    <h3 className="font-bold text-white mb-1">Telegram</h3>
+                    <a href="https://t.me/resultlegal" className="text-gray-400 hover:text-yellow-500 transition-colors">
+                      @resultlegal
+                    </a>
                   </div>
-                </a>
-
-                <a href="mailto:legalresult1@gmail.com" className="flex items-center gap-4 p-4 bg-dark-primary rounded-xl border border-gold/20 hover:border-gold transition-all">
-                  <div className="bg-gold/20 p-3 rounded-lg">
-                    <Mail className="w-6 h-6 text-gold" />
-                  </div>
-                  <div>
-                    <p className="text-gray-400 text-sm">Email</p>
-                    <p className="text-white font-medium">legalresult1@gmail.com</p>
-                  </div>
-                </a>
-              </div>
-
-              <div className="bg-dark-primary p-6 rounded-xl border border-gold/20">
-                <h3 className="text-xl font-bold text-white mb-4">Почему стоит написать сейчас?</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
-                    <span>Ответ в течение 30 минут</span>
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
-                    <span>Бесплатный разбор вашего сайта</span>
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
-                    <span>Без продаж и давления</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="bg-dark-primary p-8 rounded-xl border border-gold/20">
-              {submitted ? (
-                <div className="text-center py-12">
-                  <CheckCircle className="w-16 h-16 text-gold mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-2">Заявка отправлена!</h3>
-                  <p className="text-gray-400">Мы свяжемся с вами в ближайшее время</p>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-gray-300 mb-2">Ваше имя</label>
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full px-4 py-3 bg-dark-secondary border border-gray-700 rounded-lg focus:border-gold focus:outline-none text-white"
-                      placeholder="Иван Иванов"
-                    />
-                  </div>
 
-                  <div>
-                    <label className="block text-gray-300 mb-2">Email *</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full px-4 py-3 bg-dark-secondary border border-gray-700 rounded-lg focus:border-gold focus:outline-none text-white"
-                      placeholder="example@mail.ru"
-                    />
+                <div className="flex items-start gap-4">
+                  <div className="bg-red-500/10 p-3 rounded-xl">
+                    <Mail className="w-6 h-6 text-red-500" />
                   </div>
-
                   <div>
-                    <label className="block text-gray-300 mb-2">Телефон</label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      className="w-full px-4 py-3 bg-dark-secondary border border-gray-700 rounded-lg focus:border-gold focus:outline-none text-white"
-                      placeholder="+7 (999) 999-99-99"
-                    />
+                    <h3 className="font-bold text-white mb-1">Email</h3>
+                    <a href="mailto:legalresult1@gmail.com" className="text-gray-400 hover:text-yellow-500 transition-colors">
+                      legalresult1@gmail.com
+                    </a>
                   </div>
+                </div>
 
+                <div className="flex items-start gap-4">
+                  <div className="bg-yellow-500/10 p-3 rounded-xl">
+                    <Clock className="w-6 h-6 text-yellow-500" />
+                  </div>
                   <div>
-                    <label className="block text-gray-300 mb-2">Интересующая услуга</label>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({...formData, service: e.target.value})}
-                      className="w-full px-4 py-3 bg-dark-secondary border border-gray-700 rounded-lg focus:border-gold focus:outline-none text-white"
-                    >
-                      <option value="">Выберите пакет</option>
-                      <option value="individual">Индивидуальная разработка</option>
-                      <option value="start">Старт (от 50 000 ₽)</option>
-                      <option value="main">Основной (85 000 ₽)</option>
-                      <option value="extended">Расширенный (110 000 ₽)</option>
-                    </select>
+                    <h3 className="font-bold text-white mb-1">Время ответа</h3>
+                    <p className="text-gray-400">Ответ в течение 30 минут</p>
+                    <p className="text-gray-500 text-sm">Пн-Вс: 9:00 - 20:00</p>
                   </div>
-
-                  <div>
-                    <label className="block text-gray-300 mb-2">Сообщение *</label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
-                      className="w-full px-4 py-3 bg-dark-secondary border border-gray-700 rounded-lg focus:border-gold focus:outline-none text-white resize-none"
-                      placeholder="Расскажите о вашем проекте..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-gradient-to-r from-gold to-yellow-600 text-dark-primary py-4 rounded-lg font-bold text-lg hover:from-yellow-400 hover:to-gold transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  >
-                    {loading ? 'Отправка...' : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Отправить заявку
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
+                </div>
+              </div>
             </div>
+
+            {/* Преимущества */}
+            <div className="card gradient-border">
+              <h3 className="text-xl font-bold text-yellow-500 mb-4">Почему стоит написать нам</h3>
+              <ul className="space-y-3">
+                {[
+                  'Бесплатный разбор сайта',
+                  'Без продаж и давления',
+                  'Конкретные рекомендации',
+                  'Опыт 50+ проектов'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-yellow-500 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Форма */}
+          <div className="card">
+            <h2 className="text-2xl font-bold text-yellow-500 mb-6">Отправить заявку</h2>
+
+            {submitted ? (
+              <div className="text-center py-12">
+                <CheckCircle className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-white mb-2">Заявка отправлена!</h3>
+                <p className="text-gray-400">Мы свяжемся с вами в течение 30 минут</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Имя</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="input-field"
+                    placeholder="Ваше имя"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="input-field"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Телефон</label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="input-field"
+                    placeholder="+7 (___) ___-__-__"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Сообщение *</label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="input-field"
+                    placeholder="Расскажите о вашем проекте"
+                  />
+                </div>
+
+                <button type="submit" className="btn-gold w-full flex items-center justify-center gap-2">
+                  Отправить <Send size={20} />
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="card gradient-gold-red p-12 animate-glow">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Пока вы думаете — ваш конкурент получает вашу заявку
+            </h2>
+            <p className="text-xl text-gray-800 mb-8 font-semibold">
+              Начните с бесплатного разбора вашего сайта
+            </p>
+            <a href="https://t.me/resultlegal" className="bg-gray-900 text-white px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform inline-block">
+              Написать в Telegram →
+            </a>
           </div>
         </div>
       </section>

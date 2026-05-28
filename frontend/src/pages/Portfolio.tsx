@@ -4,50 +4,51 @@ import { ExternalLink, CheckCircle } from 'lucide-react';
 const Portfolio: React.FC = () => {
   const projects = [
     {
-      title: 'Чистый лист',
-      category: 'Банкротство физических лиц · Москва',
+      name: 'Чистый Лист',
+      specialization: 'Банкротство физических лиц · Москва',
       features: [
         'Продающая структура под БФЛ',
         'Тексты под страхи клиента',
         'Форма заявки в Telegram',
         'Полная мобильная адаптация'
       ],
-      url: 'https://chistiy-list.netlify.app',
-      image: '/portfolio/clean-sheet.jpg'
+      url: 'https://chistiy-list.netlify.app'
     }
   ];
 
   return (
-    <div>
-      <section className="py-20 bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-primary">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-center mb-4">
-            <span className="text-gold">Примеры наших сайтов</span>
-          </h1>
-          <p className="text-xl text-gray-300 text-center mb-16">
-            Каждый сделан под конкретную специализацию
+    <div className="min-h-screen pt-20">
+      <section className="section">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold mb-4 text-gradient-gold">Портфолио</h1>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Каждый сайт сделан под конкретную специализацию
           </p>
+        </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-dark-primary rounded-xl overflow-hidden border border-gold/20 hover:border-gold transition-all transform hover:scale-105">
-                <div className="h-48 bg-gradient-to-br from-gold/20 to-dark-secondary flex items-center justify-center">
-                  <span className="text-6xl">🏛️</span>
+        <div className="grid gap-12">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="card gradient-border animate-fadeInUp"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <div className="bg-gray-800 rounded-xl h-64 flex items-center justify-center mb-6">
+                    <span className="text-gray-500">Скриншот сайта</span>
+                  </div>
                 </div>
 
-                <div className="p-6">
-                  <div className="inline-block bg-gold/20 text-gold px-3 py-1 rounded-full text-sm font-medium mb-3">
-                    ГОТОВО
-                  </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-yellow-500 mb-2">{project.name}</h3>
+                  <p className="text-gray-400 mb-6">{project.specialization}</p>
 
-                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-4">{project.category}</p>
-
-                  <ul className="space-y-2 mb-6">
-                    {project.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-start gap-2 text-gray-300">
-                        <CheckCircle className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
-                        <span className="text-sm">{feature}</span>
+                  <ul className="space-y-3 mb-8">
+                    {project.features.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-yellow-500 flex-shrink-0" />
+                        <span className="text-gray-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -56,14 +57,28 @@ const Portfolio: React.FC = () => {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3 bg-gold/10 border border-gold text-gold rounded-lg font-medium hover:bg-gold hover:text-dark-primary transition-all"
+                    className="btn-gold inline-flex items-center gap-2"
                   >
-                    <ExternalLink className="w-4 h-4" />
-                    Посмотреть сайт
+                    Посмотреть сайт <ExternalLink size={20} />
                   </a>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-20 card gradient-gold-red p-12 animate-glow">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Хотите такой же сайт?
+            </h2>
+            <p className="text-xl text-gray-800 mb-8 font-semibold">
+              Обсудим ваш проект и создадим эффективный сайт
+            </p>
+            <a href="/contacts" className="bg-gray-900 text-white px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform inline-block">
+              Заказать сайт →
+            </a>
           </div>
         </div>
       </section>
