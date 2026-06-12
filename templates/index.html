@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero">
+  <div class="bg-orb bg-orb-gold" style="width: 400px; height: 400px; top: 10%; left: 10%; animation: float 8s ease-in-out infinite;"></div>
+  <div class="bg-orb bg-orb-red" style="width: 350px; height: 350px; bottom: 15%; right: 10%; animation: float 10s ease-in-out infinite 2s;"></div>
+  
+  <div class="hero-content animate-fadeInUp">
+    <h1 style="font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px;" class="text-gradient-gold">
+      Ваш сайт не приносит заявок?
+    </h1>
+    <p style="font-size: 2.2rem; font-weight: 700; margin-bottom: 16px;" class="text-gradient-red">
+      Мы это исправим.
+    </p>
+    <p style="font-size: 1.2rem; color: #9ca3af; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      Создаем сайты для юристов по банкротству, которые работают 24/7 и приносят заявки
+    </p>
+    
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 80px;">
+      <a href="{{ url_for('contacts') }}" class="btn-gold">Бесплатный разбор →</a>
+      <a href="{{ url_for('services') }}" class="btn-red">Наши услуги</a>
+    </div>
+    
+    <!-- ПРЕИМУЩЕСТВА -->
+    <div class="grid-3" style="text-align: center;">
+      <div class="card animate-fadeInUp" style="animation-delay: 0.2s;">
+        <div style="font-size: 3rem; margin-bottom: 12px;">🛡️</div>
+        <h3 style="color: #FFD700; font-size: 1.3rem; margin-bottom: 8px;">Только юристы БФЛ</h3>
+        <p style="color: #9ca3af; font-size: 0.95rem;">Глубокое знание специфики</p>
+      </div>
+      <div class="card animate-fadeInUp" style="animation-delay: 0.4s;">
+        <div style="font-size: 3rem; margin-bottom: 12px;">⏱️</div>
+        <h3 style="color: #DC143C; font-size: 1.3rem; margin-bottom: 8px;">5-7 дней</h3>
+        <p style="color: #9ca3af; font-size: 0.95rem;">Быстрый запуск</p>
+      </div>
+      <div class="card animate-fadeInUp" style="animation-delay: 0.6s;">
+        <div style="font-size: 3rem; margin-bottom: 12px;">💰</div>
+        <h3 style="color: #FFD700; font-size: 1.3rem; margin-bottom: 8px;">Фикс. цена</h3>
+        <p style="color: #9ca3af; font-size: 0.95rem;">Без скрытых платежей</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-spacer"></div>
+
+<!-- ПОЧЕМУ МЫ -->
+<section class="section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;" class="animate-fadeInUp">
+      <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 12px;" class="text-gradient-gold">Почему выбирают нас</h2>
+      <p style="color: #9ca3af; font-size: 1.1rem;">Специализируемся только на юристах по банкротству</p>
+    </div>
+    
+    <div class="grid-4">
+      <div class="card text-center animate-fadeInUp" style="animation-delay: 0.1s;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">📈</div>
+        <h3 style="color: #DC143C; font-size: 1.5rem; font-weight: 900; margin-bottom: 4px;">+300%</h3>
+        <p style="color: #9ca3af; font-size: 0.9rem;">рост заявок</p>
+      </div>
+      <div class="card text-center animate-fadeInUp" style="animation-delay: 0.2s;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🏆</div>
+        <h3 style="color: #FFD700; font-size: 1.5rem; font-weight: 900; margin-bottom: 4px;">50+</h3>
+        <p style="color: #9ca3af; font-size: 0.9rem;">проектов</p>
+      </div>
+      <div class="card text-center animate-fadeInUp" style="animation-delay: 0.3s;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;"></div>
+        <h3 style="color: #DC143C; font-size: 1.5rem; font-weight: 900; margin-bottom: 4px;">Мгновенно</h3>
+        <p style="color: #9ca3af; font-size: 0.9rem;">заявки в Telegram</p>
+      </div>
+      <div class="card text-center animate-fadeInUp" style="animation-delay: 0.4s;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🛡️</div>
+        <h3 style="color: #FFD700; font-size: 1.5rem; font-weight: 900; margin-bottom: 4px;">Гарантия</h3>
+        <p style="color: #9ca3af; font-size: 0.9rem;">по договору</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-spacer"></div>
+
+<!-- ЧТО ВХОДИТ -->
+<section class="section">
+  <div class="container">
+    <div class="card animate-fadeInUp" style="padding: 48px;">
+      <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 40px;" class="text-gradient-gold">Что входит в каждый сайт</h2>
+      <div class="grid-2">
+        {% for item in ['Продающая структура под БФЛ', 'Тексты под страхи клиента', 'Форма заявки в Telegram', 'Мобильная адаптация', 'Яндекс Метрика', 'Бесплатный аудит', 'Приоритетная сдача', 'Поддержка'] %}
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0;" class="animate-fadeInUp">
+          <span style="color: #FFD700; font-size: 1.3rem;">✅</span>
+          <span style="font-size: 1.05rem;">{{ item }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-spacer"></div>
+
+<!-- CTA -->
+<section class="section" style="padding-bottom: 80px;">
+  <div class="container">
+    <div class="card gradient-gold-red animate-glow" style="padding: 48px; text-align: center;">
+      <h2 style="font-size: 2.2rem; color: #0a0e1a; margin-bottom: 12px;">Начните получать заявки уже сегодня</h2>
+      <p style="font-size: 1.2rem; color: #1a1f3a; margin-bottom: 30px; font-weight: 600;">Бесплатный разбор вашего сайта за 30 минут</p>
+      <a href="{{ url_for('contacts') }}" style="background: #0a0e1a; color: white; padding: 16px 40px; border-radius: 12px; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        Получить разбор →
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

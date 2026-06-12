@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Услуги — ЮрРезультат{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 120px;">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;" class="animate-fadeInUp">
+      <h1 style="font-size: 3rem; font-weight: 900; margin-bottom: 12px;" class="text-gradient-gold">Наши услуги</h1>
+      <p style="color: #9ca3af; font-size: 1.2rem;">Прозрачные пакеты. Без скрытых платежей.</p>
+    </div>
+
+    <!-- ПАКЕТЫ -->
+    <div class="grid-3" style="margin-bottom: 80px;">
+      <!-- Старт -->
+      <div class="card animate-fadeInUp" style="animation-delay: 0.1s;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h3 style="color: #FFD700; font-size: 1.5rem; margin-bottom: 8px;">Старт</h3>
+          <p style="color: #9ca3af; margin-bottom: 12px;">Первые клиенты</p>
+          <p style="font-size: 2.5rem; font-weight: 900;" class="text-gradient-red">50 000 ₽</p>
+        </div>
+        <ul style="list-style: none; margin-bottom: 30px;">
+          {% for f in ['Лендинг под ключ', 'Тексты под БФЛ', 'Форма в Telegram', 'Мобильная версия', '1 раунд правок'] %}
+          <li style="padding: 10px 0; border-bottom: 1px solid rgba(255,215,0,0.1); display: flex; align-items: center; gap: 10px;">
+            <span style="color: #FFD700;">✓</span> {{ f }}
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="{{ url_for('contacts') }}" class="btn-gold" style="width: 100%; text-align: center;">Заказать</a>
+      </div>
+
+      <!-- Основной -->
+      <div class="card animate-fadeInUp" style="animation-delay: 0.2s; border: 2px solid #FFD700; position: relative;">
+        <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #FFD700, #FFA500, #DC143C); color: #0a0e1a; padding: 6px 20px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; white-space: nowrap;">ПОПУЛЯРНЫЙ</div>
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h3 style="color: #FFD700; font-size: 1.5rem; margin-bottom: 8px;">Основной</h3>
+          <p style="color: #9ca3af; margin-bottom: 12px;">Рабочий режим</p>
+          <p style="font-size: 2.5rem; font-weight: 900;" class="text-gradient-red">85 000 ₽</p>
+        </div>
+        <ul style="list-style: none; margin-bottom: 30px;">
+          {% for f in ['Всё из Старта', 'Яндекс Метрика', 'Приоритетная сдача', 'Бесплатный аудит', 'Поддержка'] %}
+          <li style="padding: 10px 0; border-bottom: 1px solid rgba(255,215,0,0.1); display: flex; align-items: center; gap: 10px;">
+            <span style="color: #FFD700;">✓</span> {{ f }}
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="{{ url_for('contacts') }}" class="btn-gold" style="width: 100%; text-align: center;">Заказать</a>
+      </div>
+
+      <!-- Расширенный -->
+      <div class="card animate-fadeInUp" style="animation-delay: 0.3s;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h3 style="color: #FFD700; font-size: 1.5rem; margin-bottom: 8px;">Расширенный</h3>
+          <p style="color: #9ca3af; margin-bottom: 12px;">Сайт + чат-бот</p>
+          <p style="font-size: 2.5rem; font-weight: 900;" class="text-gradient-red">110 000 ₽</p>
+        </div>
+        <ul style="list-style: none; margin-bottom: 30px;">
+          {% for f in ['Всё из Основного', 'Чат-бот для заявок', 'Бот 24/7 в Telegram', 'Абон. поддержка', '2 раунда правок'] %}
+          <li style="padding: 10px 0; border-bottom: 1px solid rgba(255,215,0,0.1); display: flex; align-items: center; gap: 10px;">
+            <span style="color: #FFD700;">✓</span> {{ f }}
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="{{ url_for('contacts') }}" class="btn-gold" style="width: 100%; text-align: center;">Заказать</a>
+      </div>
+    </div>
+
+    <!-- ИНДИВИДУАЛЬНО -->
+    <div class="card animate-fadeInUp" style="padding: 48px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+        <div>
+          <h2 style="font-size: 2rem; margin-bottom: 16px;" class="text-gradient-gold">Индивидуальная услуга</h2>
+          <p style="color: #9ca3af; margin-bottom: 20px; line-height: 1.8;">
+            Создадим сайт, идеально подходящий для вашей практики. Не шаблон, а полностью кастомное решение.
+          </p>
+          <ul style="list-style: none; margin-bottom: 30px;">
+            {% for item in ['Глубокий анализ ниши', 'Уникальный дизайн', 'Продающие тексты', 'Интеграция с CRM', 'Максимальная конверсия'] %}
+            <li style="padding: 8px 0; display: flex; align-items: center; gap: 10px;">
+              <span style="color: #DC143C;">✓</span> {{ item }}
+            </li>
+            {% endfor %}
+          </ul>
+          <a href="{{ url_for('contacts') }}" class="btn-red">Обсудить проект →</a>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="background: rgba(26,31,58,0.6); border-radius: 16px; padding: 24px; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">⚡</div>
+            <p style="color: #FFD700; font-weight: 700;">Быстро</p>
+            <p style="color: #9ca3af; font-size: 0.85rem;">7-14 дней</p>
+          </div>
+          <div style="background: rgba(26,31,58,0.6); border-radius: 16px; padding: 24px; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🛡️</div>
+            <p style="color: #DC143C; font-weight: 700;">Качество</p>
+            <p style="color: #9ca3af; font-size: 0.85rem;">Гарантия</p>
+          </div>
+          <div style="background: rgba(26,31,58,0.6); border-radius: 16px; padding: 24px; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🕐</div>
+            <p style="color: #FFD700; font-weight: 700;">Поддержка</p>
+            <p style="color: #9ca3af; font-size: 0.85rem;">24/7</p>
+          </div>
+          <div style="background: rgba(26,31,58,0.6); border-radius: 16px; padding: 24px; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🏆</div>
+            <p style="color: #DC143C; font-weight: 700;">Опыт</p>
+            <p style="color: #9ca3af; font-size: 0.85rem;">50+ проектов</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="margin-top: 60px;">
+      <div class="card gradient-gold-red animate-glow" style="padding: 48px; text-align: center;">
+        <h2 style="font-size: 2rem; color: #0a0e1a; margin-bottom: 12px;">Готовы начать?</h2>
+        <p style="font-size: 1.1rem; color: #1a1f3a; margin-bottom: 24px; font-weight: 600;">Оставьте заявку и получите бесплатный разбор</p>
+        <a href="{{ url_for('contacts') }}" style="background: #0a0e1a; color: white; padding: 16px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-block;">Оставить заявку →</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

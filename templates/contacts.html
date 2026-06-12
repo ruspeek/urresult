@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты — ЮрРезультат{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 120px;">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;" class="animate-fadeInUp">
+      <h1 style="font-size: 3rem; font-weight: 900; margin-bottom: 12px;" class="text-gradient-gold">Контакты</h1>
+      <p style="color: #9ca3af; font-size: 1.2rem;">Свяжитесь с нами любым удобным способом</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px;">
+      <!-- Контактная информация -->
+      <div>
+        <div class="card animate-fadeInUp">
+          <h2 style="color: #FFD700; margin-bottom: 24px; font-size: 1.5rem;">Контактная информация</h2>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; gap: 16px; align-items: start;">
+              <div style="background: rgba(255,215,0,0.1); padding: 12px; border-radius: 12px; flex-shrink: 0;">💬</div>
+              <div>
+                <h4 style="margin-bottom: 4px;">Telegram</h4>
+                <a href="https://t.me/resultlegal" class="footer-link">@resultlegal</a>
+              </div>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: start;">
+              <div style="background: rgba(220,20,60,0.1); padding: 12px; border-radius: 12px; flex-shrink: 0;">📧</div>
+              <div>
+                <h4 style="margin-bottom: 4px;">Email</h4>
+                <a href="mailto:legalresult1@gmail.com" class="footer-link">legalresult1@gmail.com</a>
+              </div>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: start;">
+              <div style="background: rgba(255,215,0,0.1); padding: 12px; border-radius: 12px; flex-shrink: 0;">🕐</div>
+              <div>
+                <h4 style="margin-bottom: 4px;">Время ответа</h4>
+                <p style="color: #9ca3af;">Ответ в течение 30 минут</p>
+                <p style="color: #6b7280; font-size: 0.9rem;">Пн-Вс: 9:00 - 20:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card animate-fadeInUp" style="margin-top: 20px;">
+          <h3 style="color: #FFD700; margin-bottom: 16px;">Почему стоит написать нам</h3>
+          <ul style="list-style: none;">
+            {% for item in ['Бесплатный разбор сайта', 'Без продаж и давления', 'Конкретные рекомендации', 'Опыт 50+ проектов'] %}
+            <li style="padding: 8px 0; display: flex; align-items: center; gap: 10px;">
+              <span style="color: #FFD700;">✓</span> {{ item }}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Форма -->
+      <div class="card animate-fadeInUp">
+        <h2 style="color: #FFD700; margin-bottom: 24px; font-size: 1.5rem;">Отправить заявку</h2>
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div style="margin-bottom: 20px;">
+            {{ form.name.label }}
+            {{ form.name(class="input-field", placeholder="Ваше имя") }}
+          </div>
+          <div style="margin-bottom: 20px;">
+            {{ form.email.label }}
+            {{ form.email(class="input-field", placeholder="your@email.com") }}
+          </div>
+          <div style="margin-bottom: 20px;">
+            {{ form.phone.label }}
+            {{ form.phone(class="input-field", placeholder="+7 (___) ___-__-__") }}
+          </div>
+          <div style="margin-bottom: 20px;">
+            {{ form.message.label }}
+            {{ form.message(class="input-field", placeholder="Расскажите о вашем проекте") }}
+          </div>
+          <div style="margin-bottom: 24px;">
+            {{ form.service.label }}
+            {{ form.service(class="input-field") }}
+          </div>
+          {{ form.submit(class="btn-gold", style="width: 100%;") }}
+        </form>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="card gradient-gold-red animate-glow" style="padding: 48px; text-align: center;">
+      <h2 style="font-size: 2rem; color: #0a0e1a; margin-bottom: 12px;">Пока вы думаете — конкурент получает заявку</h2>
+      <p style="color: #1a1f3a; margin-bottom: 24px; font-weight: 600;">Начните с бесплатного разбора</p>
+      <a href="https://t.me/resultlegal" style="background: #0a0e1a; color: white; padding: 16px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-block;">Telegram →</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

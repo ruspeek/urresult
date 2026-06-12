@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Портфолио — ЮрРезультат{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 120px;">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;" class="animate-fadeInUp">
+      <h1 style="font-size: 3rem; font-weight: 900; margin-bottom: 12px;" class="text-gradient-gold">Портфолио</h1>
+      <p style="color: #9ca3af; font-size: 1.2rem;">Каждый сайт сделан под конкретную специализацию</p>
+    </div>
+
+    <div class="card animate-fadeInUp" style="padding: 48px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+        <div style="background: rgba(26,31,58,0.6); border-radius: 16px; height: 300px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: #6b7280; font-size: 1.1rem;">Скриншот сайта</span>
+        </div>
+        <div>
+          <h3 style="font-size: 2rem; color: #FFD700; margin-bottom: 8px;">Чистый Лист</h3>
+          <p style="color: #9ca3af; margin-bottom: 20px;">Банкротство физических лиц · Москва</p>
+          <ul style="list-style: none; margin-bottom: 24px;">
+            {% for f in ['Продающая структура под БФЛ', 'Тексты под страхи клиента', 'Форма заявки в Telegram', 'Полная мобильная адаптация'] %}
+            <li style="padding: 8px 0; display: flex; align-items: center; gap: 10px;">
+              <span style="color: #FFD700;">✓</span> {{ f }}
+            </li>
+            {% endfor %}
+          </ul>
+          <a href="https://chistiy-list.netlify.app" target="_blank" class="btn-gold">Посмотреть сайт →</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 60px;">
+      <div class="card gradient-gold-red animate-glow" style="padding: 48px; text-align: center;">
+        <h2 style="font-size: 2rem; color: #0a0e1a; margin-bottom: 12px;">Хотите такой же сайт?</h2>
+        <p style="color: #1a1f3a; margin-bottom: 24px; font-weight: 600;">Обсудим ваш проект и создадим эффективный сайт</p>
+        <a href="{{ url_for('contacts') }}" style="background: #0a0e1a; color: white; padding: 16px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-block;">Заказать сайт →</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

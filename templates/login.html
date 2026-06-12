@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Вход — ЮрРезультат{% endblock %}
+
+{% block content %}
+<section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px;">
+  <div style="max-width: 450px; width: 100%;" class="animate-fadeInUp">
+    <div class="card" style="padding: 48px; text-align: center;">
+      <div style="font-size: 4rem; margin-bottom: 16px;">🛡️</div>
+      <h1 style="font-size: 2rem; margin-bottom: 8px;" class="text-gradient-gold">Вход</h1>
+      <p style="color: #9ca3af; margin-bottom: 30px;">Войдите в личный кабинет</p>
+      
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        <div style="margin-bottom: 20px; text-align: left;">
+          {{ form.email.label }}
+          {{ form.email(class="input-field", placeholder="your@email.com") }}
+        </div>
+        <div style="margin-bottom: 24px; text-align: left;">
+          {{ form.password.label }}
+          {{ form.password(class="input-field", placeholder="••••••••") }}
+        </div>
+        {{ form.submit(class="btn-gold", style="width: 100%;") }}
+      </form>
+      
+      <p style="margin-top: 24px; color: #9ca3af;">
+        Нет аккаунта? <a href="{{ url_for('register') }}" style="color: #FFD700;">Зарегистрироваться</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}
